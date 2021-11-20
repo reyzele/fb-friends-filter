@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FB Friends Filter</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <link rel="stylesheet" href="./styles/main.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js" defer></script>
+    <script src="./scripts/main.bundle.js" defer></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="bg"></div>
+      <div class="logo"><img class="logo__img" src="./images/facebook.jpg" alt="logo"></div>
+      <div class="app" id="app">
+        <div class="app__wrap">
+          <header class="app__header">
+            <h2 class="app__title">Choose friends</h2>
+            <div class="app__close-btn"><i class="fa fa-times close"></i></div>
+          </header>
+          <div class="app__search-bar">
+            <div class="search-bar__row">
+              <label class="search-bar__col">
+                <p class="search-bar__icon"><i class="fa fa-search"></i></p>
+                <input class="search-bar__input" id="allFriendsInput" placeholder="Start typing a friend's name">
+              </label>
+              <label class="search-bar__col">
+                <p class="search-bar__icon"><i class="fa fa-search"></i></p>
+                <input class="search-bar__input" id="listFriendsInput" placeholder="Start typing a friend's name">
+              </label>
+            </div>
+          </div>
+          <main class="app__main-content">
+            <div class="app__main-content-left">
+              <h4 class="friends__title">Your friends</h4>
+              <ul class="friends__list" id="allFriends">
+                <p class="loading">Loading...</p>
+              </ul>
+            </div>
+            <div class="app__main-content-right">
+              <h4 class="friends__title">Friends in list</h4>
+              <ul class="friends__list" id="savedFriends">
+                <p class="loading">Loading...</p>
+              </ul>
+            </div>
+          </main>
+          <footer class="app__footer">
+            <div class="fb-login-button" data-width="50" data-size="small" data-button-type="continue_with" data-auto-logout-link="true" data-use-continue-as="false"></div>
+            <label class="app__footer-btn" for="save-btn">
+              <button class="visuallyhidden" type="submit" id="save-btn"></button>
+              <div class="app__save-btn" id="saveButton">Save friends</div>
+            </label>
+          </footer>
+        </div>
+      </div>
+      <div class="status-overlay">
+        <div class="status-overlay__wrap">
+          <div class="status-overlay__close"><i class="fa fa-times close" id="overlay-close"></i></div>
+          <div class="status"></div>
+        </div>
+      </div><script id="user-template" type="text/x-handlebars-template">
+        {{#each items}}
+        <li class='friends__item' id='{{id}}' draggable='true'>
+          <div class='friends__item-desc'>
+            <div class='friends__avatar'>
+              <img src='{{picture}}' class='friends__avatar-img'>
+            </div>
+            <div class='friends__name'>{{name}}</div>
+          </div>
+          <div class='friends__controls'>
+            <i class='fa fa-times'></i>
+          </div>
+        </li>
+        {{/each}}
+      </script>
+    </div>
+  </body>
+</html>
