@@ -1,0 +1,65 @@
+extends ../template
+
+block variables
+  - var title = 'FB Friends Filter'
+
+block content
+  .wrapper
+    .bg
+    .logo
+      img(src='./images/facebook.jpg', alt='logo').logo__img
+    .app#app
+      .app__wrap
+        header.app__header
+          h2.app__title Choose friends
+          .app__close-btn
+            i.fa.fa-times.close
+        .app__search-bar
+          .search-bar__row
+            label.search-bar__col
+              p.search-bar__icon
+                i.fa.fa-search
+              input(class='search-bar__input' id='allFriendsInput' placeholder='Start typing a friend\'s name')
+            label.search-bar__col
+              p.search-bar__icon
+                i.fa.fa-search
+              input(class='search-bar__input' id='listFriendsInput' placeholder='Start typing a friend\'s name')
+        main.app__main-content
+          .app__main-content-left
+            h4.friends__title Your friends
+            ul.friends__list#allFriends
+              if !items
+                p.loading Loading...
+
+          .app__main-content-right
+            h4.friends__title Friends in list
+            ul.friends__list#savedFriends
+              if !items
+                p.loading Loading...
+
+        footer.app__footer
+          div(class="fb-login-button" data-width="50" data-size="small" data-button-type="continue_with" data-auto-logout-link="true" data-use-continue-as="false")
+          label.app__footer-btn(for="save-btn")
+            button.visuallyhidden(type='submit' id='save-btn')
+            .app__save-btn#saveButton Save friends
+
+    .status-overlay
+      .status-overlay__wrap
+        .status-overlay__close
+          i.fa.fa-times.close#overlay-close
+        .status
+    | <script id="user-template" type="text/x-handlebars-template">
+    |   {{#each items}}
+    |   <li class='friends__item' id='{{id}}' draggable='true'>
+    |     <div class='friends__item-desc'>
+    |       <div class='friends__avatar'>
+    |         <img src='{{picture}}' class='friends__avatar-img'>
+    |       </div>
+    |       <div class='friends__name'>{{name}}</div>
+    |     </div>
+    |     <div class='friends__controls'>
+    |       <i class='fa fa-times'></i>
+    |     </div>
+    |   </li>
+    |   {{/each}}
+    | </script>
